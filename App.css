@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* メインコンテナ */
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 25%, #FFD1DC 50%, #FFC0CB 75%, #FFB6C1 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* トップバー */
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.top-button {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* VRMエリア */
+.vrm-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60vh;
+  z-index: 1;
+}
+
+/* チャットエリア */
+.chat-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+/* キャラクターセクション */
+.character-section {
+  flex: 1;
+  background: linear-gradient(180deg, #FF69B4 0%, #FF85C1 100%);
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.character-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.05em;
+}
+
+/* メッセージコンテナ */
+.messages-container {
+  flex: 1;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* メッセージボックス */
+.message-box {
+  margin-bottom: 1.5rem;
+}
+
+.message-box:last-child {
+  margin-bottom: 0;
+}
+
+.message-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FF69B4;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.message-content {
+  background: #F8F9FA;
+  border: 1px solid #E9ECEF;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.message-content.loading {
+  background: linear-gradient(90deg, #F8F9FA 0%, #E9ECEF 50%, #F8F9FA 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* エラーメッセージ */
+.error-message {
+  background: #FFE5E5;
+  border: 1px solid #FF6B6B;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: #D63031;
+  font-size: 0.9rem;
+}
+
+/* 入力エリア */
+.input-area {
+  background: white;
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.input-container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.message-input {
+  flex: 1;
+  border: 2px solid #E9ECEF;
+  border-radius: 2rem;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #F8F9FA;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: #FF69B4;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
+}
+
+.message-input::placeholder {
+  color: #ADB5BD;
+}
+
+.message-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.send-button {
+  background: linear-gradient(135deg, #FF69B4 0%, #FF85C1 100%);
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 105, 180, 0.4);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .vrm-area {
+    height: 50vh;
+  }
+
+  .chat-area {
+    height: 50vh;
+  }
+
+  .character-section {
+    padding: 1rem;
+  }
+
+  .messages-container {
+    padding: 1rem;
+  }
+
+  .input-area {
+    padding: 0.75rem 1rem 1rem;
+  }
+}
+
+/* スクロールバーのスタイリング */
+.messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: #F1F3F5;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #DEE2E6;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #CED4DA;
+}
